@@ -69,7 +69,7 @@ When looking at the plug of the *controller cable* :
 2 : CMD        -> to arduino MOSI (on ICSP header)
 4 : GND        -> to arduino GND
 5 : 3.3V       -> to arduino 3.3V or 5V (tested on Pop'n KASC, minicon, and IIDX JKOC)
-6 : Attention  -> to arduino digital pin 2
+6 : Attention  -> to arduino analog pin A2
 7 : SCK        -> to arduino SCK (on ICSP header)
 
 * Note: 1k ohm pullup resistor to 5V means you also have to put a 1k ohm resistor between 5V and MISO.
