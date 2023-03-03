@@ -53,6 +53,7 @@ Pop'n Music and IIDX controller modes are auto detected (you must plug the PSX c
 ## Building Instructions
 
 - Download Arduino IDE, 
+- Install greiman's DigitalIO library from library manager
 - Build and Flash for your ATMEGA32U4 Board
 - Have Fun
 
