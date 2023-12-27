@@ -14,6 +14,10 @@ This code solves these issues and auto-detects whether a Pop'n Music controller 
 
 You can buy a cheap "Dualshock extension cable" or a dualshock breakout board to build an external adapter box, or you can buy a pre-made adapter from me to support my work :)
 
+## NEW: DIY GUIDE
+
+You can now check out the [GUIDE](https://github.com/CrazyRedMachine/BEMANI_PSX_Adapter/tree/main/DIY_GUIDE) for step-by-step instructions on how to build your own adapter!
+
 ## Demo
 
 https://www.instagram.com/p/CHVLleylqFl/
