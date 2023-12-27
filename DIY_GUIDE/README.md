@@ -80,7 +80,7 @@ Use your soldering iron to clean solder off the pins
 
 ### Step 2: Preparing the MCU
 
-Note: I suggest flashing the code **BEFORE** soldering anything, but if you forgot to flash it, you can always do it later using the usb cable soldered on it
+Note: I suggest flashing the code **BEFORE** soldering anything, but if you forgot to flash it, you can always do it later using the usb cable soldered on it (this will allow firmware upgrades too as the Arduino IDE should still be able to reset and reflash your board)
 
 #### Resistor and wires
 
@@ -150,7 +150,7 @@ I like adding some tape in order not to confuse a modded adapter with a regular 
 
 Congrats on making your Bemani adapter :)
 
-Note that you can also flash my LUFAHybridFightstick firmware on it if you take the "PSX" branch and it will serve as a low latency PSX to USB adapter, but I think that's a bit overkill, and doing that without exposing the RST pin will make it hard to flash another firmware on it later on (PROTIP: you can either mod a reset button or solder that RST pin to an unused pin from the PSX plug).
+Note that you can also flash my LUFAHybridFightstick firmware on it if you take the "PSX" branch and it will serve as a low latency PSX to USB adapter, but I think that's a bit overkill, and, because that other firmware is using LUFA, doing that without exposing the RST pin will make it hard to flash another firmware on it or upgrade later on (PROTIP: you can either mod a reset button or solder that RST pin to an unused pin from the PSX plug if you want to use LUFA firmwares as well).
 
 ## Donation
 
