@@ -1,6 +1,7 @@
 #include "IIDXHID.h"
 #include "POPNHID.h"
 #include "GFHID.h"
+#include "DMHID.h"
 #include "PsxControllerHwSpi.h"
 #include <inttypes.h>
 
@@ -15,6 +16,7 @@
 IIDXHID_ IIDXHID;
 POPNHID_ POPNHID;
 GFHID_ GFHID;
+DMHID_ DMHID;
 
 const byte PIN_PS2_ATT = A2;
 PsxControllerHwSpi<PIN_PS2_ATT> psx;
@@ -51,6 +53,7 @@ void update_encoder(tt_direction_t dir, uint8_t quantity) {
 
 bool g_popn = false;
 bool g_gf = false;
+bool g_dm = false;
 
 void setup() {
   haveController = psx.begin();
@@ -61,6 +64,13 @@ void setup() {
   {
     g_popn = true;
     PluggableUSB().plug(&POPNHID);
+  }
+  // Up + Right + Left is protocol mask 0xB000. Check it before the
+  // Right + Left (0xA000) GF signature, of which it is a superset.
+  else if ((psxButtons & PSB_PAD_LEFT) && (psxButtons & PSB_PAD_UP) && (psxButtons & PSB_PAD_RIGHT))
+  {
+    g_dm = true;
+    PluggableUSB().plug(&DMHID);
   }
   else if ((psxButtons & PSB_PAD_LEFT) && (psxButtons & PSB_PAD_RIGHT))
   {
@@ -88,6 +98,21 @@ if (!haveController) {
   }
 
   uint32_t buttonsState = 0;
+
+  if (g_dm)
+  {
+    buttonsState |= !!(psxButtons & PSB_TRIANGLE) << 0; /* Hi-Hat */
+    buttonsState |= !!(psxButtons & PSB_CIRCLE) << 1;   /* Snare */
+    buttonsState |= !!(psxButtons & PSB_L2) << 2;       /* Bass Pedal */
+    buttonsState |= !!(psxButtons & PSB_R2) << 3;       /* High Tom */
+    buttonsState |= !!(psxButtons & PSB_R1) << 4;       /* Low Tom */
+    buttonsState |= !!(psxButtons & PSB_CROSS) << 5;    /* Cymbal */
+    buttonsState |= !!(psxButtons & PSB_SELECT) << 6;
+    buttonsState |= !!(psxButtons & PSB_START) << 7;
+
+    *button_state = buttonsState;
+    return;
+  }
 
   if (g_gf)
   {
@@ -260,6 +285,18 @@ static tt_direction_t curr_tt_dir;
 static int curr_tt_pos;
 
   currTime = micros();
+
+  if (g_dm)
+  {
+    if ( (currTime - lastReport) >= REPORT_DELAY )
+    {
+      uint32_t button_state = 0;
+      buttonRead(&button_state, NULL);
+      DMHID.sendState(button_state);
+      lastReport = currTime;
+    }
+    return;
+  }
 
   if (g_popn)
   {

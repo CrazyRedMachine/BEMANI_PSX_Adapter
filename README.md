@@ -2,7 +2,7 @@
 
 # BEMANI PSX Adapter
 
-USB Adapter for PlayStation IIDX, Pop'n Music, and GuitarFreaks Controllers
+USB Adapter for PlayStation IIDX, Pop'n Music, GuitarFreaks, and drummania Controllers
 
 Generic Playstation to USB adapters are not working correctly with Bemani controllers :
 
@@ -12,7 +12,9 @@ Generic Playstation to USB adapters are not working correctly with Bemani contro
 
 - GuitarFreaks controllers hold left+right constantly.
 
-This code solves these issues and auto-detects whether a Pop'n Music or GuitarFreaks controller is plugged.
+- drummania controllers hold up+left+right constantly.
+
+This code solves these issues and auto-detects whether a Pop'n Music, GuitarFreaks or drummania controller is plugged.
 
 You can buy a cheap "Dualshock extension cable" or a dualshock breakout board to build an external adapter box, or you can buy a pre-made adapter from me to support my work :)
 
@@ -30,7 +32,7 @@ The PSX pad read code is using [PsxNewLib by SukkoPera](https://github.com/Sukko
 
 ## Features
 
-Pop'n Music, IIDX and GuitarFreaks controller modes are auto detected (you must plug the PSX controller to the adapter before plugging the USB)
+Pop'n Music, IIDX, GuitarFreaks and drummania controller modes are auto detected (you must plug the PSX controller to the adapter before plugging the USB)
 
 ### Pop'n Music mode
 
@@ -61,6 +63,10 @@ Pop'n Music, IIDX and GuitarFreaks controller modes are auto detected (you must 
 - Buttons R/G/B are mapped to the first 3 buttons, then Pick is 4, Wailing is 5, SELECT and START is 6 and 7.
 
 - Unlike IIDX and Pop’n Music, the GuitarFreaks mode can be partially used with コナステ GITADORA but needs manually remapping, as the PlayStation GuitarFreaks controller lacks the two additional neck buttons and a gyro, which were introduced in the GuitarFreaks XG.
+
+### drummania mode
+
+- Hi-Hat, Snare, Bass Pedal, High Tom, Low Tom and Cymbal are mapped to buttons 1 through 6, followed by SELECT and START on buttons 7 and 8.
 
 ## Building Instructions
 
